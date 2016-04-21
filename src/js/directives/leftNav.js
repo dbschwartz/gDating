@@ -3,5 +3,6 @@ app.directive('leftNav', function() {
     replace: true,
     restrict: "E",
     templateUrl: "js/directives/templates/leftNav.html",
+    controller: 'leftNavCtrl'
   }
 })
