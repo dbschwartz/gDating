@@ -2,15 +2,15 @@ app.controller('leftNavCtrl',['apiService', '$scope', function(apiService, $scop
     apiService.getProfile().then(function (user) {
       $scope.profile = user;
     });
-        var tab; 
+        $scope.tab =0; 
 
         $scope.tabIsSet = function(checkTab) {
-          return tab === checkTab;
+          return $scope.tab === checkTab;
         };
 
         $scope.setTab = function(activeTab) {
-          tab = activeTab;
+          $scope.tab = activeTab;
         };
 
-    console.log(tab);   
+    console.log($scope.tab);   
 }]);
