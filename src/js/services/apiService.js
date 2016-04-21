@@ -1,17 +1,19 @@
 app.service('apiService',['$http', function($http){
+    var baseURL = 'https://galvanize-student-apis.herokuapp.com/gdating';
     return {
+
       getProfile: function(memberID){
-        $http({
+        return $http({
           method: 'GET',
-          url: '/members/'+memberID
+          url: baseURL +'/members/'+ memberID
         })
         .then(
           function success(profile){
-          return profile
-        },
-          function error(error){
+            return profile
+          },
+          function error(error) {
             return error
           }
-      });
+      )}
     }
 }]);
