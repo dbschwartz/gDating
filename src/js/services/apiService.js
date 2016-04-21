@@ -1,11 +1,11 @@
 app.service('apiService',['$http', function($http){
     var baseURL = 'https://galvanize-student-apis.herokuapp.com/gdating';
-    var profile;
+    var profile = {};
     return {
 
       getProfile: function(memberID){
 
-        memberID = memberID || '5719234249f05f11000fdb60';
+        memberID = memberID || '5719234249f05f11000fdb5f';
         return $http({
           method: 'GET',
           url: baseURL +'/members/'+ memberID
@@ -24,8 +24,11 @@ app.service('apiService',['$http', function($http){
                  return profile.data.matches;
         }
         else{
-          getProfile()
-          return profile.data.matches
+          return this.getProfile()
+          .then(function(profile){
+            return profile.data.matches;
+          })
+ 
         }
       }
     }
