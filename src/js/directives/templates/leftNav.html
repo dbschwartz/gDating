@@ -1,29 +1,29 @@
-
+  
 <div ng-controller="leftNavCtrl">
 <ul class="nav nav-pills  left-nav">
-        <li ng-class="{ active:tab.isSet('All')}"
-          <a href ng-click="tab.setTab('All')">All</a>
+        <li ng-class="{ active:leftNavCtrl.tabIsSet('All')}"
+          <a href ng-click="leftNavCtrl.setTab('All')">All</a>
         </li>
-        <li ng-class="{ active:tab.isSet('Popular')}">
-          <a href ng-click="tab.setTab('Popular')">Popular</a>
+        <li ng-class="{ active:leftNavCtrl.tabIsSet('Popular')}">
+          <a href ng-click="leftNavCtrl.setTab('Popular')">Popular</a>
         </li>
-        <li ng-class="{ active:tab.isSet('Near Me')}">
-          <a href ng-click="tab.setTab('Near Me')}">Near Me</a>
-        <li ng-class="{ active:tab.isSet('My Matches')}">
-          <a href ng-click="tab.setTab('My Matches')}">My Matches</a>
-        <li ng-class="{ active:tab.isSet('Chatting')}">
-          <a href ng-click="tab.setTab('Chatting')}">Chatting</a>
+        <li ng-class="{ active:leftNavCtrl.tabIsSet('Near Me')}">
+          <a href ng-click="leftNavCtrl.setTab('Near Me')">Near Me</a>
+        <li ng-class="{ active:leftNavCtrl.tabIsSet('My Matches')}">
+          <a href ng-click="leftNavCtrl.setTab('My Matches')">My Matches</a>
+        <li ng-class="{ active:leftNavCtrl.tabIsSet('Chatting')}">
+          <a href ng-click="leftNavCtrl.setTab('Chatting')">Chatting</a>
 </ul>
     
             
-          <user-list type="All" ng-show="tab.isSet('All')"></all-matches>
+          <user-list type="All" ng-show="leftNavCtrl.isSet('All')"></all-matches>
 
-          <user-list type="Popular" ng-show="tab.isSet('Popular')"></user-list>
+          <user-list type="Popular" ng-show="leftNavCtrl.isSet('Popular')"></user-list>
 
-          <user-list type="Near Me" ng-show="tab.isSet('Near Me')"></user-list>
+          <user-list type="Near Me" ng-show="leftNavCtrl.isSet('Near Me')"></user-list>
 
-          <user-list type="My Matches" ng-show="tab.isSet('My Matches')"></user-list>
+          <user-list type="My Matches" ng-show="leftNavCtrl.isSet('My Matches')"></user-list>
 
-          <user-list type="Chatting" ng-show="tab.isSet('Chatting')"></user-list>
+          <user-list type="Chatting" ng-show="leftNavCtrl.isSet('Chatting')"></user-list>
 
 </div>
