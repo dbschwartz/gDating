@@ -1,1 +1,12 @@
   /* add custom styles */
+.left-nav{
+  position: absolute;
+    top: 25px;
+    width: 41.6%;
+    display: block;
+}
+
+.background{
+  top: 50px;
+  display: hidden;
+}
