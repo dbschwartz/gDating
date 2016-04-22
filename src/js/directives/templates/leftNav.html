@@ -16,17 +16,12 @@
         <li ng-class="{ active:tabIsSet(5)}">
           <a href ng-click="setTab(5)">Chatting</a>
         </li>
-</ul>
-    
-      <div>            
-          <user-list type="All" ng-show="leftNavCtrl.isSet(1)"></user-list>
+</ul>  
+      {{tab}}
 
-          <user-list type="Popular" ng-show="leftNavCtrl.isSet(2)"></user-list>
-
-          <user-list type="Near Me" ng-show="leftNavCtrl.isSet(3)"></user-list>
-
-          <user-list type="My Matches" ng-show="leftNavCtrl.isSet(4)"></user-list>
-
-          <user-list type="Chatting" ng-show="leftNavCtrl.isSet(5)"></user-list>
-        </div>
+      <div ng-switch on="tab">  
+        {{tab}}          
+          <user-list ng-switch-when="4" type=4><p>cool</p></user-list>
+          <div ng-switch-default><p>YO</p></div>
+      </div>
 </div>

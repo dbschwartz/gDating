@@ -9,8 +9,9 @@ app.controller('leftNavCtrl',['apiService', '$scope', function(apiService, $scop
         };
 
         $scope.setTab = function(activeTab) {
-          $scope.tab = activeTab;
+           $scope.tab = activeTab;
+           console.log($scope.tab); 
         };
 
-    console.log($scope.tab);   
+     
 }]);

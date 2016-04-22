@@ -5,14 +5,16 @@ app.directive('userList', function() {
     scope: 
           { type: '@'
           }, 
-    controller: function(apiService, $scope){
-                    if($scope.type === "My Matches"){
-                      apiService.getMatches()
-                          .then(function (matches){
-                            $scope.matches = matches;
-                          });
-                      console.log($scope.matches);
-                      }
+    link: function(scope, elem, attrs) {
+    },
+    controller: function(apiService, $scope, $element, $attrs){
+                  console.log($attrs["type"], "yo");
+                    if($attrs["type"] == 4){
+                      apiService.getMatches().then(function (matches) {
+                           $scope.matches = matches;
+                           console.log(matches);
+                      });
+                    }
                 }
           };
 });

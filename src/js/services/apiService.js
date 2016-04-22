@@ -21,12 +21,12 @@ app.service('apiService',['$http', function($http){
       )},
       getMatches: function(){
         if (Object.keys(profile).length !== 0){   //Single Page Application Style
-                 return profile.data.matches;
+                 return profile.data.data._matches;
         }
         else{
           return this.getProfile()
           .then(function(profile){
-            return profile.data.matches;
+            return profile.data.data._matches;
           })
  
         }
