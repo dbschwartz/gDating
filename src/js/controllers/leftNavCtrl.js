@@ -1,12 +1,13 @@
-app.controller('leftNavCtrl',['apiService', '$scope', function(apiService, $scope){
-    apiService.getProfile().then(function (user) {
-      $scope.profile = user;
-    });
-        $scope.tab =0; 
+  app.controller('leftNavCtrl',['apiService', '$scope', function(apiService, $scope){
 
-        $scope.tabIsSet = function(checkTab) {
-          return $scope.tab === checkTab;
-        };
+        $scope.tab = 0; 
+
+        if($scope.tab==4){
+              apiService.getMatches()
+              .then(function(matches){
+                console.log(matches);
+              })
+          }
 
         $scope.setTab = function(activeTab) {
            $scope.tab = activeTab;

@@ -1,10 +1,9 @@
-app.controller('mainCtrl',['apiService', '$scope', function(apiService, $scope){
-    apiService.getProfile().then(function (user) {
-      $scope.profile = user;
-    });
-    apiService.getMatches().then(function (matches) {
-      $scope.matches = matches;
-      console.log(matches);
-    });
+app.controller('mainCtrl',['$scope', 'apiService', function($scope, apiService){
+
+    apiService.getData()
+      .then(function(profile){
+        $scope.profile = profile;
+      })
+
 }]);
 

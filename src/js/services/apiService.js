@@ -1,35 +1,45 @@
 app.service('apiService',['$http', function($http){
     var baseURL = 'https://galvanize-student-apis.herokuapp.com/gdating';
-    var profile = {};
     return {
-
-      getProfile: function(memberID){
-
+      getData: function(memberID){
         memberID = memberID || '5719234249f05f11000fdb5f';
         return $http({
           method: 'GET',
           url: baseURL +'/members/'+ memberID
         })
-        .then(
-          function success(data){
-            profile = data;
-            return profile
-          },
-          function error(error) {
-            return error
-          }
-      )},
-      getMatches: function(){
-        if (Object.keys(profile).length !== 0){   //Single Page Application Style
-                 return profile.data.data._matches;
-        }
-        else{
-          return this.getProfile()
-          .then(function(profile){
-            return profile.data.data._matches;
+        .then(function(res){
+          console.log(res.data.data._matches);
+          return res;
+
+        })
+        .catch(function(err){
+          return err;
+        })
+      },
+       getMatches: function(memberID){
+        var matches=[];
+        memberID = memberID || '5719234249f05f11000fdb5f';
+        return $http({
+          method: 'GET',
+          url: baseURL +'/members/'+ memberID
+        })
+        .then(function(res){
+                matchList=res.data.data._matches;
+                console.log(matchList);
+                matchList.forEach(function(matchID){
+                   $http.get(baseURL+'/members/'+matchID)
+                    .then(function(match){
+                      match=match.data.data;
+                      matches.push(match);
+                      console.log(matches);
+                      })
+                     .catch(function(error){
+                      console.log(error);
+                     })
+                })
+                console.log(matches);
+                return res;
           })
- 
-        }
       }
     }
 }]);

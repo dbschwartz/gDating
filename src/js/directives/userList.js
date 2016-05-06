@@ -8,14 +8,16 @@ app.directive('userList', function() {
     link: function(scope, elem, attrs) {
     },
     controller: function(apiService, $scope, $element, $attrs){
-                  console.log($attrs["type"], "yo");
-                    if($attrs["type"] == 4){
-                      apiService.getMatches().then(function (matches) {
-                           $scope.matches = matches;
-                           console.log(matches);
-                      });
-                    }
-                }
+                  apiService.getMatches()
+                      .then(function(matches){
+                        console.log(matches);
+                        $scope.matches = matches;
+                      })
+                    // if($attrs["type"] === '4'){
+                    //       console.log($scope.getprofile);
+                    //  }
+                   console.log($scope.matches);
+                  }
           };
 });
  
