@@ -3,11 +3,21 @@
         $scope.tab = 0; 
 
         if($scope.tab==4){
-              apiService.getMatches()
-              .then(function(matches){
-                console.log(matches);
-              })
+          console.log('aaa');
+            apiService.getMatchProfiles()
+              .then(
+                function(data) {
+                  $scope.matcheProfiles = data;
+                  console.log("success",data);
+                },
+                function(error){
+                  console.log("error", error);
+                },
+                function(update) {
+                  console.log("update", update);
+              });
           }
+        
 
         $scope.setTab = function(activeTab) {
            $scope.tab = activeTab;
