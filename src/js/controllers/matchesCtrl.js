@@ -1,5 +1,4 @@
 app.controller('matchesCtrl', ['$scope', '$rootScope', 'apiService', function($scope, $rootScope, apiService){
-  console.log($rootScope.currentProfileID);
    apiService.getMatches($rootScope.currentProfileID)
       .then(
         function(data) {

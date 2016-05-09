@@ -14,6 +14,11 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/matches.html',
       controller: 'matchesCtrl'
     })
+
+    .when('/chatting', {
+      templateUrl: 'templates/chatting.html',
+      controller: 'chattingCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });

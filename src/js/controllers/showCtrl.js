@@ -6,11 +6,23 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService',
         .then(function(profile){
           profile=profile.data.data
           $scope.profile=profile;
+          $scope.conversations = false;
           console.log(profile);
         })
         .catch(function(error){
           console.log(error)
         })
+
+      $scope.getConversations= function(matchID){
+           apiService.getConversations($rootScope.currentProfileID, matchID)
+            .then(function(conversations){
+              $scope.conversationList = conversations;
+              console.log(conversations);
+            })
+            .catch(function(error){
+              console.log(error);
+            })
+      }
     });
 
 }]);

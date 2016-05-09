@@ -32,6 +32,8 @@
                 <h4 class="media-heading">{{profile.username}}</h4>
                 <p>{{profile.dob | date}}</p>
                 <p>{{profile.email}}</p>
+                <p><a href="" ng-click="getConversations(profile._id); conversations=true">Get Conversations</a></p>
+                <div ng-show="conversations">{{conversationList}}</div>  
               </div>
           </div>
     </div>

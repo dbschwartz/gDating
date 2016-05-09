@@ -70,6 +70,36 @@ app.service('apiService',['$http','$q', function($http, $q){
               deferred.update(updates);
             });
           return deferred.promise;
+       },
+       getChatting: function(currentProfileID){
+           return $http({
+             method: 'GET',
+             url: baseURL + '/members/' + currentProfileID + '/conversations'
+           })
+           .then(function(res){
+              console.log(res);
+              return res;
+           })
+           .catch(function(err){
+             console.log('something went wrong', err);
+           })
+       },
+       getConversations: function(currentProfileID, matchID){
+            return $http({
+              method: 'GET',
+              url: baseURL +'/members/'+ currentProfileID +'/conversations/' + matchID
+            })
+            .then(function(res){
+              res = res.data.data;
+              console.log(res);
+              if(res.length===0){
+                res="No Converstations!";
+              }
+              return res
+            })
+            .catch(function(err){
+              console.log('something went wrong', err);
+            })
        }
     }
 }]);
