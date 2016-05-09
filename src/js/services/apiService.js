@@ -20,6 +20,18 @@ app.service('apiService',['$http','$q', function($http, $q){
           return err;
         })
       },
+       getAllProfiles: function(){
+         return $http({
+            method:'GET',
+            url: baseURL +'/members?limit=50'
+         })
+         .then(function(res){
+            return res
+         })
+         .catch(function(err){
+            console.log('something went wrong', err);
+         })
+       },
        getMatches: function(memberID){
         memberID = memberID || '5719234249f05f11000fdb5f';
         return $http({
@@ -27,14 +39,11 @@ app.service('apiService',['$http','$q', function($http, $q){
           url: baseURL +'/members/'+ memberID
         })
         .then(function(res){
-          var matches;
-          matchList=res.data.data._matches;
-          matchList.forEach(function(){
-
-          })
+          var matchList=res.data.data._matches;
+          return matchList;
         })
         .catch(function(err){
-          console.log('something went wrong');
+          console.log('something went wrong', err);
         })
       },
        getMatchProfiles: function(){

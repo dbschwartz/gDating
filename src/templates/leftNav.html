@@ -20,8 +20,11 @@
       {{tab}}
 
       <div ng-switch on="tab">  
-        {{tab}}          
-          <user-list ng-switch-when="4" type=4><p>cool</p></user-list>
+          <ng-switch-when="1"> 
+          <ng-switch-when="2">
+          <ng-switch-when="3">
+          <ng-switch-when="4"><p>cool</p></user-list>
+          <ng-switch-when="5">
           <div ng-switch-default><p>YO</p></div>
       </div>
 </div>
