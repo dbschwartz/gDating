@@ -1,0 +1,24 @@
+    <br><br>
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="nav nav-pills">
+            <li><a href ="#/allprofiles">All</a></li>
+            <li><a href ="#/popular">Popular</a></li>
+            <li><a href ="#/nearme">Near Me</a></li>
+            <li><a href ="#/matches">My Matches</a></li>
+            <li><a href ="#/chatting">Chatting</a></li>
+        </ul>  
+      </div>
+    </div>
+        <div class="col-md-3">
+             <div class="media" ng-repeat="match in matches">
+              <div class="media-left">
+                <img class="media-object" ng-src="{{match.avatar}}" alt="avatar">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{match.username}}</h4>
+                <p>{{match.dob | date}}</p>
+                <p>{{match.email}}</p>
+              </div>
+          </div>
+    </div>

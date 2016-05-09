@@ -5,14 +5,13 @@ app.service('apiService',['$http','$q', function($http, $q){
                     "5719234249f05f11000fde21",
                     "5719234249f05f11000fdcea"];
     return {
-      getData: function(memberID){
-        memberID = memberID || '5719234249f05f11000fdb5f';
+      getProfile: function(memberID){
+        memberID = memberID;
         return $http({
           method: 'GET',
           url: baseURL +'/members/'+ memberID
         })
         .then(function(res){
-          console.log(res.data.data._matches);
           return res;
 
         })
@@ -33,30 +32,36 @@ app.service('apiService',['$http','$q', function($http, $q){
          })
        },
        getMatches: function(memberID){
-        memberID = memberID || '5719234249f05f11000fdb5f';
+        memberID = memberID;
         return $http({
           method: 'GET',
-          url: baseURL +'/members/'+ memberID
+          url: baseURL +'/members/'+ memberID +'/matches'
         })
         .then(function(res){
-          var matchList=res.data.data._matches;
+          matchList=res.data.data;
           return matchList;
         })
         .catch(function(err){
           console.log('something went wrong', err);
         })
       },
-       getMatchProfiles: function(){
-
+       getMatchProfiles: function(matchIDs){
           var deferred= $q.defer();
           var httpCalls = [];
           angular.forEach(matchIDs, function(matchID) {
-            httpCalls.push($http.get(baseURL +'/members/'+ matchID));
+            console.log(matchID._id);
+            httpCalls.push($http.get(baseURL +'/members/'+ matchID._id));
           });
           $q.all(httpCalls)
           .then(
             function(results) {
-              deferred.resolve(JSON.stringify(results))
+              var matches = results.map(function (match) {
+                return match.data.data;
+              });
+
+              console.log('matches', matches);
+
+              deferred.resolve(matches)
             },
             function(errors) {
               deferred.reject(errors)

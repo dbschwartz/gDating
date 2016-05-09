@@ -1,14 +1,17 @@
-app.controller('matchCtrl', ['$scope', 'apiService', function($scope, apiService){
-   apiService.getMatchProfiles()
-              .then(
-                function(data) {
-                  $scope.matchProfiles = data;
-                  console.log("success",$scope.matchProfiles);
-                },
-                function(error){
-                  console.log("error", error);
-                },
-                function(update) {
-                  console.log("update", update);
-              });
+app.controller('matchesCtrl', ['$scope', '$rootScope', 'apiService', function($scope, $rootScope, apiService){
+  console.log($rootScope.currentProfileID);
+   apiService.getMatches($rootScope.currentProfileID)
+      .then(
+        function(data) {
+          console.log(data)
+          $scope.matchProfiles = data;
+          // console.log("success",$scope.matchProfiles);
+        })
+      .then(function(){
+        apiService.getMatchProfiles($scope.matchProfiles)
+          .then(
+            function(data){
+              $scope.matches=data;
+          })
+      })
 }]);
