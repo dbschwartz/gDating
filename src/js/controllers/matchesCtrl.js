@@ -11,4 +11,4 @@ app.controller('matchCtrl', ['$scope', 'apiService', function($scope, apiService
                 function(update) {
                   console.log("update", update);
               });
-  }]);
+}]);

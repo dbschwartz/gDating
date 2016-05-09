@@ -1,0 +1,30 @@
+    <br><br>
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="nav nav-pills">
+            <li><a href ="#/allprofiles">All</a></li>
+            <li><a href ="#/popular">Popular</a></li>
+            <li><a href ="#/nearme">Near Me</a></li>
+            <li><a href ="#/mymatches">My Matches</a></li>
+            <li><a href ="#/chatting">Chatting</a></li>
+        </ul>  
+      </div>
+    </div>
+    <div class="row">
+          <div class="col-md-8">
+            <div class="media" ng-repeat="profile in profiles">
+              <div class="media-left">
+                <img class="media-object" ng-src="{{profile.avatar}}" alt="avatar">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{profile.username}}</h4>
+                <p>{{profile.dob | date}}</p>
+                <p><a href="" ng-click="showProfile(profile._id)">Show Profile</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4" ng-controller="showCtrl">
+            <p>COOL</p>
+            {{id}}
+          </div>
+    </div>
