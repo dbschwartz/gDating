@@ -17,7 +17,8 @@ app.service('authService', ['$window', function($window){
      };
 
      var login = function(user){
-        return $http.post(baseURL+'/login', user).success(function(data){=
+        return $http.post(baseURL+'/login', user).success(function(data){
+          saveToken(data.token);
         });
      };
 
@@ -40,19 +41,19 @@ app.service('authService', ['$window', function($window){
         var token = getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
         return {
-          id: payload._id;,
+          id: payload._id,
           username: payload.username,
           email: payload.email
         };
       }
     };
-  
-      return{
-        saveToken: saveToken,
-        getToken: getToken,
-        register: register,
-        login: login,
-        logout: logout
-       };
   }
+      return{
+        saveToken: authService.saveToken,
+        getToken: authService.getToken,
+        register: authService.register,
+        login: authService.login,
+        logout: authService.logout
+       };
+  
 }]);

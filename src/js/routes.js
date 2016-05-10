@@ -5,7 +5,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'mainCtrl'
     })
     
-    .when('/register,'{
+    .when('/register',{
       templateUrl: 'templates/register.html',
       controller: 'registerCtrl'
     })
