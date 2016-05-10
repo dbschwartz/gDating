@@ -6,6 +6,18 @@ app.service('authService', ['$window', '$http', function($window, $http){
   function getToken(token){
     return $window.localStorage['gDateToken'];
   }
+
+  function isLoggedIn(){
+      var token = getToken();
+        if(token){
+          var payload = JSON.parse( .atob(token.split('.')[1]));
+          if(payload.exp > (Date.now() / 1000)){
+            return true
+          }
+        } else{
+           return false;
+        }
+     }
   return{
     register: function(user){
       return $http.post(baseURL+'/register', user).then(function(data){
@@ -31,25 +43,15 @@ app.service('authService', ['$window', '$http', function($window, $http){
 
      },
 
-     isLoggedIn: function(){
-      var token = getToken();
-        if(token){
-          var payload = JSON.parse($window.atob(token.split('.')[1]));
-          return payload.exp > Date.now() / 1000;
-        } else{
-           return false;
-        }
-     },
+     isLoggedIn: isLoggedIn,
 
     currentUser: function(){
-      var self = this;
-      if(self.isLoggedIn()){
+      if(isLoggedIn()){
         var token = getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
+        console.log(payload);
         return {
-          id: payload._id,
-          username: payload.username,
-          email: payload.email
+          id: payload.sub
         };
       }
     }

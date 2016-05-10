@@ -1,5 +1,8 @@
-app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 
-  function($scope, $rootScope, apiService){
+app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
+  function($scope, $rootScope, apiService, authService){
+   $scope.isLoggedIn = authService.isLoggedIn();
+   var currentUser = authService.currentUser();
+   console.log($scope.currentUser);
 
     $rootScope.$on("show", function(event, args){
       apiService.getProfile(args.id)
@@ -14,7 +17,7 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService',
         })
 
       $scope.getConversations= function(matchID){
-           apiService.getConversations($rootScope.currentProfileID, matchID)
+           apiService.getConversations(currentUser.id, matchID)
             .then(function(conversations){
               $scope.conversationList = conversations;
               console.log(conversations);
