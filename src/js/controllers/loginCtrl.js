@@ -1,19 +1,8 @@
-app.controller('registerCtrl', ['$scope', '$rootScope', '$location', 'authService',
+app.controller('loginCtrl', ['$scope', '$rootScope', '$location', 'authService',
   function($scope, $rootScope, $location, authService){
     $scope.credentials = {
-      username: "",
       email: "",
-      password: "",
-      dob: "",
-      firstName: "",
-      lastName: "",
-      description: "",
-      address:{
-        geo:{
-          lng: 104.992588,
-          lat: 39.733513
-        }
-      } 
+      password: ""
     };
 
     $scope.returnPage = $location.search().page || '/';
@@ -21,7 +10,7 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$location', 'authServic
     $scope.onSubmit = function() {
       $scope.formError = "";
       authService
-        .register($scope.credentials)
+        .login($scope.credentials)
         .catch(function(err){
           $scope.formError=err;
         })

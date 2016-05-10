@@ -1,32 +1,36 @@
-app.service('authService', ['$window', function($window){
+app.service('authService', ['$window', '$http', function($window, $http){
   var baseURL = 'https://galvanize-student-apis.herokuapp.com/gdating/auth';
+  function saveToken(token){
+    $window.localStorage['gDateToken'] = token;
+  }
+  function getToken(token){
+    return $window.localStorage['gDateToken'];
+  }
+  return{
+    register: function(user){
+      return $http.post(baseURL+'/register', user).then(function(data){
+        console.log('inside of register', data);
+         saveToken(data.data.data.token);
+      })
+      .catch(function(err){
+        return err;
+      })  
+     },
 
-
-  function authService($window){
-     var saveToken = function(token) {
-      $window.localStorage['gDateToken'] = token;
-     }
-     var getToken = function (token) {
-      return $window.localStorage['gDateToken'];
-     }
-
-     var register = function(user){
-      return $http.post(baseURL+'/register', user).success(function(data){
-         saveToken(data.token);
-      });
-     };
-
-     var login = function(user){
+     login: function(user){
         return $http.post(baseURL+'/login', user).success(function(data){
-          saveToken(data.token);
-        });
-     };
+          saveToken(data.data.data.token);
+        })
+        .catch(function(err){
+          return err;
+        })  
+     },
 
-     var logout = function(){
+     logout: function(){
          $window.localStorage.removeItem('gDateToken');
-     };
+     },
 
-     var isLoggedIn = function(){
+     isLoggedIn: function(){
       var token = getToken();
         if(token){
           var payload = JSON.parse($window.atob(token.split('.')[1]));
@@ -34,10 +38,11 @@ app.service('authService', ['$window', function($window){
         } else{
            return false;
         }
-     };
+     },
 
-    var currentUser = function(){
-      if(isLoggedIn()){
+    currentUser: function(){
+      var self = this;
+      if(self.isLoggedIn()){
         var token = getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
         return {
@@ -46,14 +51,8 @@ app.service('authService', ['$window', function($window){
           email: payload.email
         };
       }
-    };
+    }
   }
-      return{
-        saveToken: authService.saveToken,
-        getToken: authService.getToken,
-        register: authService.register,
-        login: authService.login,
-        logout: authService.logout
-       };
+      
   
 }]);

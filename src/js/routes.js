@@ -10,6 +10,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'registerCtrl'
     })
     
+    .when('/login',{
+      templateUrl: 'templates/login.html',
+      controller: 'loginCtrl'
+    })
+
     .when('/allprofiles', {
       templateUrl: 'templates/allProfiles.html',
       controller: 'allProfilesCtrl'

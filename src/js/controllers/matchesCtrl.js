@@ -1,5 +1,8 @@
-app.controller('matchesCtrl', ['$scope', '$rootScope', 'apiService', function($scope, $rootScope, apiService){
-   apiService.getMatches($rootScope.currentProfileID)
+app.controller('matchesCtrl', ['$scope', '$rootScope', '$location', 'apiService', 'authService', function($scope, $rootScope, $locationService, apiService, authService){
+  $scope.currentPath = $location.path();
+  $scope.isLoggedIn = authService.isLoggedIn();
+  $scope.currentUser = authService.currentUser();
+   apiService.getMatches($scope.currentUser.id)
       .then(
         function(data) {
           console.log(data)
