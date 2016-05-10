@@ -19,15 +19,16 @@ app.service('authService', ['$window', '$http', function($window, $http){
 
      login: function(user){
         return $http.post(baseURL+'/login', user).success(function(data){
-          saveToken(data.data.data.token);
+          saveToken(  data.data.token);
         })
         .catch(function(err){
-          return err;
+          console.log(err);
         })  
      },
 
      logout: function(){
          $window.localStorage.removeItem('gDateToken');
+
      },
 
      isLoggedIn: function(){

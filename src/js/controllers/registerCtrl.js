@@ -16,7 +16,6 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$location', 'authServic
       } 
     };
 
-    $scope.returnPage = $location.search().page || '/';
 
     $scope.onSubmit = function() {
       $scope.formError = "";
@@ -26,8 +25,7 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$location', 'authServic
           $scope.formError=err;
         })
         .then(function(){
-          $location.search('page', null);
-          $location.path($scope.returnPage);
+          $location.path('/');
         });
       };
 }]);

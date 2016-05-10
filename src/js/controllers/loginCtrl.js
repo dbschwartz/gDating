@@ -5,7 +5,6 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$location', 'authService',
       password: ""
     };
 
-    $scope.returnPage = $location.search().page || '/';
 
     $scope.onSubmit = function() {
       $scope.formError = "";
@@ -15,8 +14,7 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$location', 'authService',
           $scope.formError=err;
         })
         .then(function(){
-          $location.search('page', null);
-          $location.path($scope.returnPage);
+          $location.path('/');
         });
       };
 }]);
