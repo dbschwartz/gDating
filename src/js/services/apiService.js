@@ -1,9 +1,5 @@
 app.service('apiService',['$http','$q', function($http, $q){
     var baseURL = 'https://galvanize-student-apis.herokuapp.com/gdating';
-    var matchIDs = ["5719234249f05f11000fdb81",
-                    "5719234249f05f11000fdb8d",
-                    "5719234249f05f11000fde21",
-                    "5719234249f05f11000fdcea"];
     return {
       getProfile: function(memberID){
         memberID = memberID;

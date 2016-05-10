@@ -5,6 +5,11 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'mainCtrl'
     })
     
+    .when('/register,'{
+      templateUrl: 'templates/register.html',
+      controller: 'registerCtrl'
+    })
+    
     .when('/allprofiles', {
       templateUrl: 'templates/allProfiles.html',
       controller: 'allProfilesCtrl'
