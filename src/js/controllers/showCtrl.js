@@ -26,6 +26,16 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
               console.log(error);
             })
       }
+
+      $scope.postConversation = function(matchID,content){
+          apiService.postConversation(currentUser.id, matchID, content)
+            .then(function(data){
+              console.log(data);
+            })
+            .catch(function(error){
+              console.log(error)
+            })
+      }
     });
 
 }]);

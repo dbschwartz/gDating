@@ -33,7 +33,11 @@
                 <p>{{profile.dob | date}}</p>
                 <p>{{profile.email}}</p>
                 <p><a href="" ng-click="getConversations(profile._id); conversations=true">Get Conversations</a></p>
-                <div ng-show="conversations">{{conversationList}}</div>  
+                <div ng-show="conversations">
+                  {{conversationList}}
+                  <input ng-model="content" type="text" class="form-control" title="content">
+                  <button ng-click="postConversation(profile._id, content)" type="button" class="btn btn-warning">Send Message</button>
+                </div>
               </div>
           </div>
     </div>

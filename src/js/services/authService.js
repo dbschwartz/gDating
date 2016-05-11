@@ -10,10 +10,8 @@ app.service('authService', ['$window', '$http', function($window, $http){
   function isLoggedIn(){
       var token = getToken();
         if(token){
-          var payload = JSON.parse( .atob(token.split('.')[1]));
-          if(payload.exp > (Date.now() / 1000)){
-            return true
-          }
+          var payload = JSON.parse($window.atob(token.split('.')[1]));
+          return payload.exp > (Date.now() / 1000)
         } else{
            return false;
         }

@@ -96,6 +96,25 @@ app.service('apiService',['$http','$q', function($http, $q){
             .catch(function(err){
               console.log('something went wrong', err);
             })
+       },
+
+       postConversation(currentProfileID, matchID, content){
+        console.log('sender', currentProfileID);
+        console.log('receipient', matchID);
+        console.log('content', content);
+        data = {
+            id: currentProfileID,
+             _recepient: matchID,
+            content: content
+        };
+        return $http.post(baseURL+'/members/'+currentProfileID+'/conversations', data)
+          .success(function(res){
+            return res
+          })
+          .catch(function(err){
+            console.log(err);
+          })
        }
+
     }
 }]);
