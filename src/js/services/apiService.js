@@ -103,7 +103,6 @@ app.service('apiService',['$http','$q', function($http, $q){
         console.log('receipient', matchID);
         console.log('content', content);
         data = {
-            id: currentProfileID,
              _recepient: matchID,
             content: content
         };
