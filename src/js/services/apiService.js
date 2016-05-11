@@ -98,15 +98,9 @@ app.service('apiService',['$http','$q', function($http, $q){
             })
        },
 
-       postConversation(currentProfileID, matchID, content){
-        console.log('sender', currentProfileID);
-        console.log('receipient', matchID);
-        console.log('content', content);
-        data = {
-             _recepient: matchID,
-            content: content
-        };
-        return $http.post(baseURL+'/members/'+currentProfileID+'/conversations', data)
+       postConversation: function (currentProfileID, message){
+        console.log('message', message);
+        return $http.post(baseURL+'/members/'+currentProfileID+'/conversations', message)
           .success(function(res){
             return res
           })

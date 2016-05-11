@@ -1,8 +1,11 @@
 app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
   function($scope, $rootScope, apiService, authService){
    $scope.isLoggedIn = authService.isLoggedIn();
-   var currentUser = authService.currentUser();
-   console.log($scope.currentUser);
+   currentUser = authService.currentUser();
+   $scope.message = {
+    _recipient: "",
+    content: ""
+   };
 
     $rootScope.$on("show", function(event, args){
       apiService.getProfile(args.id)
@@ -10,6 +13,7 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
           profile=profile.data.data
           $scope.profile=profile;
           $scope.conversations = false;
+          $scope.message._recipient = profile._id
           console.log(profile);
         })
         .catch(function(error){
@@ -27,10 +31,11 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
             })
       }
 
-      $scope.postConversation = function(matchID,content){
-          apiService.postConversation(currentUser.id, matchID, content)
+      $scope.postConversation = function(){
+          apiService.postConversation(currentUser.id, $scope.message)
             .then(function(data){
               console.log(data);
+              $scope.getConversations($scope.message._recipient)
             })
             .catch(function(error){
               console.log(error)
