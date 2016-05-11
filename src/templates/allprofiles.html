@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="col-md-3" ng-controller="showCtrl">
-             <div class="media">
+             <div class="media" ng-show="profileLoaded">
               <div class="media-left">
                 <img class="media-object" ng-src="{{profile.avatar}}" alt="avatar">
               </div>
@@ -34,7 +34,17 @@
                 <p>{{profile.email}}</p>
                 <p><a href="" ng-click="getConversations(profile._id); conversations=true">Get Conversations</a></p>
                 <div ng-show="conversations">
-                  {{conversationList}}
+                <div ng-if="conversationList.length===0">No Conversations!!</div>
+                <div ng-if="conversationList.length>0">
+                    <div ng-repeat="conversation in conversationList">
+                    <!--{{conversation._sender==="You"}} -->
+                      <div ng-switch="conversation._sender">
+                        <p ng-switch-when=="You"><span style="color:red">{{conversation._sender}}:&nbsp <span style="color:black">{{conversation.content}}</span></p>
+                        <p ng-switch-default><span style="color:blue">{{conversation._sender}}: &nbsp<span style="color:black">{{conversation.content}}</span></p>
+                      </div>
+                    </div>
+                </div>
+              </div>
                    <form ng-submit="postConversation()">
                       <div role="alert" ng-show="formError" class="alert alert-danger">
                         {{formError}}
