@@ -1,0 +1,64 @@
+    <br><br>
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="nav nav-pills">
+            <li><a href ="#/allprofiles">All</a></li>
+            <li><a href ="#/popular">Popular</a></li>
+            <li><a href ="#/nearme">Near Me</a></li>
+            <li><a href ="#/matches">My Matches</a></li>
+            <li><a href ="#/chatting">Chatting</a></li>
+        </ul>  
+      </div>
+    </div>
+    <div class="row">
+          <div class="col-md-4">
+            <div class="media" ng-repeat="profile in profiles">
+              <div class="media-left">
+                <img class="media-object" ng-src="{{profile.avatar}}" alt="avatar">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{profile.username}}</h4>
+                <p>{{profile.dob | date}}</p>
+                <p><a href="" ng-click="showProfile(profile._id)">Show Profile</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3" ng-controller="showCtrl">
+             <div class="media" ng-show="profileLoaded">
+              <div class="media-left">
+                <img class="media-object" ng-src="{{profile.avatar}}" alt="avatar">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{profile.username}}</h4>
+                <p>{{profile.dob | date}}</p>
+                <p>{{profile.email}}</p>
+                <p><a href="" ng-click="getConversations(profile._id); conversations=true">Get Conversations</a></p>
+                <div ng-show="conversations">
+                <div ng-if="conversationList.length===0">No Conversations!!</div>
+                <div ng-if="conversationList.length>0">
+                    <div ng-repeat="conversation in conversationList">
+                      <div ng-switch="conversation._sender">
+                        <p ng-switch-when="You"><span style="color:red">{{conversation._sender}}:&nbsp <span style="color:black">{{conversation.content}}</span></p>
+                        <p ng-switch-default><span style="color:blue">{{conversation._sender}}: &nbsp<span style="color:black">{{conversation.content}}</span></p>
+                      </div>
+                    </div>
+                </div>
+              </div>
+                   <form ng-submit="postConversation()">
+                      <div role="alert" ng-show="formError" class="alert alert-danger">
+                        {{formError}}
+                      </div>
+                      <div class="form-group">
+                        <label for="content"></label>
+                        <input type="text" class="form-control" id="content" placeholder="Enter your message" ng-model="message.content" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="Recipient ID"></label>
+                        <input type="hidden" class="form-control" id="_recipient" ng-model="message.profile._id">
+                     </div>
+                       <button type="submit" class="btn btn-default">Send Message!</button>
+                   </form>
+                </div>
+              </div>
+          </div>
+    </div>

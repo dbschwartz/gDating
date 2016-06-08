@@ -10,10 +10,13 @@
       <a class="navbar-brand" href="#">gDating</a>
     </div>
   
-      <ul class="nav navbar-nav navbar-right">
+      <ul ng-show="isLoggedIn"class="nav navbar-nav navbar-right">
         <li><a href="#">Search</a></li>
         <li><a href="#">My Profile</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="#/logout" ng-click='logout()'>Logout</a></li>
+      </ul>
+      <ul ng-hide="isLoggedIn" class="nav navbar-nav navbar-right">
+        <li><a href="#/login">Login</a></li>
       </ul>
     </div>
   </div>

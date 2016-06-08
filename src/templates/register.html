@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+     <h2>Registration Page</h2>
+      <p class="lead">Already a member? Please<a href="#/login">log in</a></p>
+       <form ng-submit="onSubmit()">
+        <div role="alert" ng-show="formError" class="alert alert-danger"> {{formError}}</div>
+        <div class="form-group">
+          <label for="username"></label>
+          <input type="text" class="form-control" id="username" placeholder="Enter your username" ng-model="credentials.username" required>
+        </div>
+        <div class="form-group">
+          <label for="firstName"></label>
+          <input type="text" class="form-control" id="firstName" placeholder="Enter your First Name" ng-model="credentials.names.firstName" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName"></label>
+          <input type="text" class="form-control" id="lastName" placeholder="Enter your Last Name" ng-model="credentials.names.lastName" required>
+        </div>
+        <div class="form-group">
+          <label for="E-mail"></label>
+          <input type="email" class="form-control" id="email" placeholder="Enter e-mail address" ng-model="credentials.email" required>
+        </div>
+        <div class="form-group">
+          <label for="Password"></label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" ng-model="credentials.password" minlength='8' required>
+        </div>
+        <div class="form-group">
+          <label for="Date of Birth">Date of Birth Must be over 18!!  </label>
+          <input type="date" class="form-control" id="dob" placeholder="Enter e-mail address" ng-model="credentials.dob" max="1998-05-09"required>
+        </div>
+        <div class="form-group">
+          <label for="Slug"></label>
+          <input type="text" class="form-control" id="slug" placeholder="Please enter your slug" ng-model="credentials.slug">
+        </div>
+        <div class="form-group">
+          <label for="Location: Longitude"></label>
+          <input type="hidden" class="form-control" id="address.geo.lng" ng-model="credentials.address.geo.lng">
+        </div>
+        <div class="form-group">
+          <label for="Location: Latitude"></label>
+          <input type="hidden" class="form-control" id="address.geo.lat" ng-model="credentials.address.geo.lat">
+        </div>
+        <button type="submit" class="btn btn-default">Register!</button>
+      </form>
+    </div>
+  </div>
+</div>
