@@ -71,7 +71,7 @@ function appConfig($routeProvider, $httpProvider) {
       }
       // if token and prevent logging in is true
       if(next.preventLoggedIn && $window.localStorage.getItem('gDateToken')) {
-        $location.path('/');
+        $location.path('/allprofiles');
       }
     });
   }

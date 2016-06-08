@@ -14,7 +14,7 @@ app.controller('loginCtrl', ['$scope', '$rootScope', '$location', 'authService',
           $scope.formError=err;
         })
         .then(function(){
-          $location.path('/');
+          $location.path('/allprofiles');
         });
       };
 }]);

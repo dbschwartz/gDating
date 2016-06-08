@@ -1,5 +1,6 @@
   app.controller('leftNavCtrl',['apiService', '$scope', function(apiService, $scope){
 
+
         $scope.tab = 1;
         if($scope.tab==1){
           apiService.getAllProfiles()
@@ -31,5 +32,5 @@
            console.log($scope.tab); 
         };
 
-     
+        
 }]);

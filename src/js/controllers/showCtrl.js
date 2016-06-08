@@ -33,7 +33,7 @@ app.controller('showCtrl', ['$scope', '$rootScope', 'apiService', 'authService',
             .then(function(conversations){
               console.log('conversations',conversations)
               if(conversations["0"].messages){
-              var formattedConversation = conversations["0"].messages.map(function(message){
+              var formattedConversation = conversations[0].messages.map(function(message){
                 var instanceObj = {};
                 if(message._sender === currentUser.id){
                   instanceObj._sender = "You";

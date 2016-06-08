@@ -25,7 +25,7 @@ app.controller('registerCtrl', ['$scope', '$rootScope', '$location', 'authServic
           $scope.formError=err;
         })
         .then(function(){
-          $location.path('/');
+          $location.path('/allprofiles');
         });
       };
 }]);
