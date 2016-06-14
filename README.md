@@ -2,19 +2,14 @@
 
 A dating website that allows users to register and chat with other users.
 
-
-## Installation
-
-Fork and Clone From GitHub
-```
-Command Line
-npm install 
-gulp
-```
+Live Demo Not Deployed Due to Proprietary API
 
 
-## Live Demo
-In Progresss
+##Screen Shots
+
+![alt text](/screenshot1.png "Screenshot 1")
+![alt text](/screenshot2.png "Screenshot 2")
+
 
 
 ## Built With
@@ -22,6 +17,8 @@ In Progresss
 * Angular.JS
 * JavaScript
 * JST
+
+
 
 
 
