@@ -18,7 +18,7 @@ app.service('apiService',['$http','$q', function($http, $q){
        getAllProfiles: function(){
          return $http({
             method:'GET',
-            url: baseURL +'/members?limit=50'
+            url: baseURL +'/members?limit=50&offset=3'
          })
          .then(function(res){
             return res
